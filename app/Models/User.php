@@ -77,4 +77,8 @@ class User extends Authenticatable {
 	public function posts(): HasMany {
 		return $this->hasMany( Post::class);
 	}
+
+	public function avatarUrl(): string {
+		return "https://ui-avatars.com/api/?background=random&name={$this->name}";
+	}
 }
