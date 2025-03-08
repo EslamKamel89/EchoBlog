@@ -16,7 +16,8 @@ class CreatePost extends Component {
 
 	public function create() {
 		$this->validate();
-
+		/** @var Post $post */
 		$post = auth()->user()->posts()->create( [ 'body' => $this->body ] );
+		$this->dispatch( 'post.created', postId: $post->id );
 	}
 }

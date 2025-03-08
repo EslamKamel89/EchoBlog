@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder {
 			'name' => 'admin',
 			'email' => 'admin@gmail.com',
 		] );
-		// $this->call( PostSeeder::class);
+		$this->call( PostSeeder::class);
 	}
 }

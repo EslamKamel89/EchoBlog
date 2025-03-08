@@ -6,7 +6,6 @@
 			@endfor
 		</div>
 		@if ( $this->hasMorePages() )
-
 			<div x-data x-intersect="$wire.incrementPage"></div>
 		@endif
 	@else
