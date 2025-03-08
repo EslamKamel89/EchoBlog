@@ -8,5 +8,4 @@
 
 		<div x-data x-intersect="$wire.incrementPage"></div>
 	@endif
-    {{-- <button class="btn btn-success btn-sm text-xs text-white" wire:click="incrementPage">incremen</button> --}}
 </div>
