@@ -19,6 +19,8 @@
         "vite": "^6.0.11"
     },
     "dependencies": {
-        "@alpinejs/intersect": "^3.14.8"
+        "@alpinejs/intersect": "^3.14.8",
+        "laravel-echo": "^2.0.2",
+        "pusher-js": "^8.4.0"
     }
 }
