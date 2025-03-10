@@ -27,6 +27,10 @@ class PostIndex extends Component {
 	public function hasMorePages(): bool {
 		return $this->page < count( $this->chunks );
 	}
+	#[On('echo:posts,PostCreated') ]
+	public function prependPostFromBroadcast( array $data ) {
+		$this->prependPost( $data['postId'] );
+	}
 	#[On('post.created') ]
 	public function prependPost( int $postId ) {
 		if ( empty( $this->chunks ) ) {
@@ -35,8 +39,8 @@ class PostIndex extends Component {
 		$this->chunks[0] = [ $postId, ...$this->chunks[0] ];
 	}
 
-	public function testBroadcast() {
-		event( new MainEvent() );
-	}
+	// public function testBroadcast() {
+	// 	event( new MainEvent() );
+	// }
 
 }
