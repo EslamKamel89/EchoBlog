@@ -2,12 +2,16 @@
 
 namespace App\Livewire;
 
+use App\Events\MainEvent;
 use App\Models\Post;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class PostIndex extends Component {
-
+	// #[On('echo:posts,.myevent') ]
+	// public function testPusher() {
+	// 	dd( 'Message recieved' );
+	// }
 	public array $chunks = [];
 	public int $page = 1;
 	public function mount() {
@@ -29,6 +33,10 @@ class PostIndex extends Component {
 			$this->chunks[] = [];
 		}
 		$this->chunks[0] = [ $postId, ...$this->chunks[0] ];
+	}
+
+	public function testBroadcast() {
+		event( new MainEvent() );
 	}
 
 }

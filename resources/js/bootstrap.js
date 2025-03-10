@@ -1,27 +1,11 @@
 import axios from "axios";
-import Pusher from "pusher-js";
 window.axios = axios;
-
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
-// window.Echo = new Echo({
-//     broadcaster: "pusher",
-//     key: "d81ed4f41e49070cb6f4",
-//     cluster: "eu",
-//     forceTLS: true,
-// });
+/**
+ * Echo exposes an expressive API for subscribing to channels and listening
+ * for events that are broadcast by Laravel. Echo and event broadcasting
+ * allow your team to quickly build robust real-time web applications.
+ */
 
-// var channel = Echo.channel("my-channel");
-// channel.listen("my-event", function (data) {
-//     alert(JSON.stringify(data));
-// });
-Pusher.logToConsole = true;
-
-var pusher = new Pusher("d81ed4f41e49070cb6f4", {
-    cluster: "eu",
-});
-
-var channel = pusher.subscribe("my-channel");
-channel.bind("my-event", function (data) {
-    alert(JSON.stringify(data));
-});
+import './echo';

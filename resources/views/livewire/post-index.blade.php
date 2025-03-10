@@ -1,4 +1,5 @@
 <div class="">
+    <button class="btn btn-error" wire:click="testBroadcast">Test pusher</button>
     @if( count( $chunks ) )
 		<div class="space-y-5">
 			@for( $chunk = 0; $chunk < $page; $chunk++ )
