@@ -38,9 +38,24 @@ class PostIndex extends Component {
 		}
 		$this->chunks[0] = [ $postId, ...$this->chunks[0] ];
 	}
+	#[On('echo:posts,PostDeleted') ]
+	public function deletePostFromBroadcast( array $data ) {
+		$this->deletePost( $data['postId'] );
+	}
+	#[On('post.deleted') ]
+	public function deletePost( int $postId ) {
+		if ( empty( $this->chunks ) ) {
+			$this->chunks[] = [];
+		}
+		foreach ( $this->chunks as $index => $chunk ) {
+			$key = array_search( $postId, $chunk );
+			if ( $key ) {
+				unset( $this->chunks[ $index ][ $key ] );
+				break;
+			}
+		}
+	}
 
-	// public function testBroadcast() {
-	// 	event( new MainEvent() );
-	// }
+
 
 }

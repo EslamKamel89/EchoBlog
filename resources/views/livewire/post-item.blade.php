@@ -9,4 +9,12 @@
             <p>{{ $post->body }}</p>
         </div>
     </div>
+    <div class="flex flex-col items-center gap-y-2">
+        @can( 'update', $post )
+			<button class="btn btn-sm text-sm btn-success text-white self-stretch" wire:click="edit">Edit</button>
+		@endcan
+        @can( 'delete', $post )
+			<button class="btn btn-sm text-sm btn-error text-white self-stretch" wire:click="delete">Delete</button>
+		@endcan
+    </div>
 </div>
