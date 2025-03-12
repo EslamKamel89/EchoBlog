@@ -22,4 +22,10 @@ class PostChunk extends Component {
 		// dd( 'hello world' );
 		$this->ids = [ $postId, ...$this->ids ];
 	}
+	#[On('chunk.{chunkIndex}.delete') ]
+	public function deletePost( int $key ) {
+		// dd( 'hello world' );
+		unset( $this->ids[ $key ] );
+
+	}
 }

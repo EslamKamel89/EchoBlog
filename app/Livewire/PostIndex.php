@@ -37,6 +37,7 @@ class PostIndex extends Component {
 			$this->chunks[] = [];
 		}
 		$this->chunks[0] = [ $postId, ...$this->chunks[0] ];
+		$this->dispatch( "chunk.0.prepend", $postId );
 	}
 	#[On('echo:posts,PostDeleted') ]
 	public function deletePostFromBroadcast( array $data ) {
@@ -46,12 +47,13 @@ class PostIndex extends Component {
 	public function deletePost( int $postId ) {
 		foreach ( $this->chunks as $index => $chunk ) {
 			$key = array_search( $postId, $chunk );
-			if ( $key ) {
+			// info( "chunk." . $key . ".delete" );
+			if ( $key || $key === 0 ) {
+				$this->dispatch( "chunk." . $index . ".delete", $key );
 				unset( $this->chunks[ $index ][ $key ] );
 				break;
 			}
 		}
-		$this->dispatch( "chunk.0.prepend", $postId );
 	}
 
 
