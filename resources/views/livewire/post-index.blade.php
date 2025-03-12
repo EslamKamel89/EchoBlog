@@ -3,7 +3,7 @@
     @if( count( $chunks ) )
 		<div class="space-y-5">
 			@for( $chunk = 0; $chunk < $page; $chunk++ )
-				<livewire:post-chunk :ids="$chunks[ $chunk ]" :key="$chunk" />
+				<livewire:post-chunk :ids="$chunks[ $chunk ]" :key="$chunk" :chunkIndex="$chunk" />
 			@endfor
 		</div>
 		@if ( $this->hasMorePages() )

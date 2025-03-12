@@ -44,9 +44,6 @@ class PostIndex extends Component {
 	}
 	#[On('post.deleted') ]
 	public function deletePost( int $postId ) {
-		if ( empty( $this->chunks ) ) {
-			$this->chunks[] = [];
-		}
 		foreach ( $this->chunks as $index => $chunk ) {
 			$key = array_search( $postId, $chunk );
 			if ( $key ) {
@@ -54,6 +51,7 @@ class PostIndex extends Component {
 				break;
 			}
 		}
+		$this->dispatch( "chunk.0.prepend", $postId );
 	}
 
 

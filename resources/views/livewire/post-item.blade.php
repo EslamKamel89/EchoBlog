@@ -14,7 +14,8 @@
 			<button class="btn btn-sm text-sm btn-success text-white self-stretch" wire:click="edit">Edit</button>
 		@endcan
         @can( 'delete', $post )
-			<button class="btn btn-sm text-sm btn-error text-white self-stretch" wire:click="delete">Delete</button>
+			<button class="btn btn-sm text-sm btn-error text-white self-stretch" wire:click="delete"
+				wire:confirm="Are you sure you want to delete this post?">Delete</button>
 		@endcan
     </div>
 </div>
