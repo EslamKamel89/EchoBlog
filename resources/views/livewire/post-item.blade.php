@@ -9,13 +9,13 @@
             <p class="pt-2 pb-4 px-3">{{ $post->body }}</p>
         </div>
         <div x-show="editing">
-            <livewire:edit-post :post="$post" />
+            <livewire:edit-post :post="$post" wire:model="body" />
         </div>
     </div>
     <div class="flex flex-col items-center gap-y-2">
         @can( 'update', $post )
 			<button class="btn btn-sm text-sm   text-white self-stretch" x-bind:class="editing? 'btn-success':'btn-warning'"
-				@click="editing = !editing" x-text="editing?'Save':'Edit'"></button>
+				@click="if(editing) $wire.edit(); editing = !editing; " x-text="editing?'Save':'Edit'"></button>
 		@endcan
         @can( 'delete', $post )
 			<button class="btn btn-sm text-sm btn-error text-white self-stretch" wire:click="delete"

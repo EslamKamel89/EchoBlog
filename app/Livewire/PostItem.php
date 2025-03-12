@@ -9,11 +9,15 @@ use Livewire\Component;
 class PostItem extends Component {
 	public Post $post;
 	public string $body;
+	public function mount() {
+		$this->body = $this->post->body;
+	}
 	public function render() {
 		return view( 'livewire.post-item' );
 	}
 	public function edit() {
 		$this->authorize( 'update', $this->post );
+		// dd( $this->body );
 	}
 	public function delete() {
 		$this->authorize( 'delete', $this->post );
