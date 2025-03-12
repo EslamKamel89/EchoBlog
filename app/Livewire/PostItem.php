@@ -8,6 +8,7 @@ use Livewire\Component;
 
 class PostItem extends Component {
 	public Post $post;
+	public string $body;
 	public function render() {
 		return view( 'livewire.post-item' );
 	}

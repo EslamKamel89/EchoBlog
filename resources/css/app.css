@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 @plugin "daisyui";
+[x-clock] = {
+    display: none !important;
+}
