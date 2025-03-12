@@ -9,7 +9,7 @@
             <p class="pt-2 pb-4 px-3">{{ $post->body }}</p>
         </div>
         <div x-show="editing">
-            <textarea v-model="body" class="w-full border-gray-50 bg-gray-50">{{ $post->body }}</textarea>
+            <livewire:edit-post :post="$post" />
         </div>
     </div>
     <div class="flex flex-col items-center gap-y-2">
