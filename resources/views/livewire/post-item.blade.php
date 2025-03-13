@@ -6,11 +6,14 @@
         <div class="font-bold text-lg">{{ $post->user->name }} <span
                 class="mx-8 border rounded-full py-1 px-2 bg-blue-500 text-white">{{ $post->id }}</span></div>
         <div x-show="!editing">
-            <p class="pt-2 pb-4 px-3">{{ $post->body }}</p>
+            <p class="pt-2 pb-4 px-3" wire:loading.class="opacity-25">{{ $post->body }}</p>
         </div>
         <div x-show="editing">
             <livewire:edit-post :post="$post" wire:model="body" />
         </div>
+        @error( 'body' )
+			<div class="text-xs text-red-500 ms-3 -translate-y-5">{{ $message }}</div>
+		@enderror
     </div>
     <div class="flex flex-col items-center gap-y-2">
         @can( 'update', $post )
