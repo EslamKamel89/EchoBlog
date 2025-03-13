@@ -3,10 +3,16 @@
         <img class="w-12 h-12 rounded-full overflow-clip" src="{{ $post->user->avatarUrl() }}">
     </div>
     <div class="grow space-y-2">
-        <div class="font-bold text-lg">{{ $post->user->name }} <span
-                class="mx-8 border rounded-full py-1 px-2 bg-blue-500 text-white">{{ $post->id }}</span></div>
+        <div class="font-bold text-lg flex gap-x-2 items-center">
+            <div>
+                {{ $post->user->name }}
+            </div>
+            <div class="mx-8 border rounded-full py-1 px-2 bg-blue-500 text-white">{{ $post->id }}</div>
+            <button wire:click="like" class="btn btn-sm btn-error bg-red-100 text-lg" wire:loading.attr="disabled"
+                wire:target="like">💖 <span class="text-sm ">{{ $post->likes == 0 ? '' : $post->likes }}</span></button>
+        </div>
         <div x-show="!editing">
-            <p class="pt-2 pb-4 px-3" wire:loading.class="opacity-25">{{ $post->body }}</p>
+            <p class="pt-2 pb-4 px-3" wire:loading.class="opacity-25" wire:target="edit">{{ $post->body }}</p>
         </div>
         <div x-show="editing">
             <livewire:edit-post :post="$post" wire:model="body" />
