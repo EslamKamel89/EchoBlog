@@ -3,12 +3,17 @@
 namespace App\Livewire;
 
 use App\Events\PostDeleted;
+use App\Events\PostUpdated;
 use App\Models\Post;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class PostItem extends Component {
+	protected $listeners = [ 
+		'echo:posts.{post.id},PostUpdated' => '$refresh',
+	];
 	public Post $post;
+
 	#[Validate('required', message: "You can't leave the body empty") ]
 	public string $body;
 	public function mount() {
@@ -23,6 +28,8 @@ class PostItem extends Component {
 		$this->post->update( [ 
 			'body' => $this->body,
 		] );
+		broadcast( new PostUpdated( $this->post->id ) )
+			->toOthers();
 	}
 	public function delete() {
 		$this->authorize( 'delete', $this->post );
